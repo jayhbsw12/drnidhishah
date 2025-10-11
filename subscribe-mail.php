@@ -1,85 +1,145 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // ----- Collect & sanitise -----
-    $email  = isset($_POST['wdt_mc_emailid']) ? filter_var($_POST['wdt_mc_emailid'], FILTER_SANITIZE_EMAIL) : '';
-    $name   = isset($_POST['wdt_mc_name'])    ? substr(preg_replace("/[\r\n]+/", ' ', strip_tags($_POST['wdt_mc_name'])), 0, 120) : '';
-    $mobile = isset($_POST['wdt_mc_mobile'])  ? substr(preg_replace('/\D+/', '', $_POST['wdt_mc_mobile']), 0, 20) : '';
+// subscribe-mail.php — sends footer subscription form via Gmail SMTP (PHPMailer)
+// DEV/PROD ready: change MODE to 'prod' later and update recipients below.
 
-    // Validate email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        exit("Invalid email address.");
-    }
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
 
-    // ----- Config -----
-    $to         = "nidhishah0002@gmail.com";  // destination
-    $from_name  = "Website Subscriptions";
-    $from_email = "no-reply@drnidhishah.com";             // MUST be your domain
-    $bounce     = "bounce@drnidhishah.com";               // envelope sender for SPF
-    $domain     = "drnidhishah.com";                       // for Message-ID/ident
+// ---- Load PHPMailer (paths must match your folder) ----
+require __DIR__ . '/PHPMailer/Exception.php';
+require __DIR__ . '/PHPMailer/PHPMailer.php';
+require __DIR__ . '/PHPMailer/SMTP.php';
 
-    $subject = "New Subscription Request";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-    // Add CC recipients here
-    $cc_recipients = ["priyankatiwari1420@gmail.com"];  // CC email addresses
+// =======================
+// ENV / MODE SWITCH
+// =======================
+// Set MODE to 'dev' for now. Change to 'prod' when going live.
+const MODE = 'prod';
 
-    // ----- Build multipart message -----
-    $boundary   = "=_".md5(uniqid((string)mt_rand(), true));
-    $date_hdr   = date(DATE_RFC2822);
-    $message_id = sprintf("<%s.%s@%s>", bin2hex(random_bytes(8)), time(), $domain);
+// Define recipients for each mode (edit prod values when going live)
+$RECIPIENTS = [
+  'dev' => [
+    'to' => [
+      'jaymodihbsoftweb@gmail.com',           // YOU (current testing)
+    ],
+    'cc' => [
+      'info@hbsoftweb.com' // New CC (change/remove anytime)
+    ],
+  ],
+  'prod' => [
+    'to' => [
+      'nidhishah0002@gmail.com',                // <-- Replace with client email(s)
+      // 'another@client.com',
+    ],
+    'cc' => [
+      'info@hbsoftweb.com',               // <-- Replace or leave empty
+    ],
+  ],
+];
 
-    // Plain-text fallback
-    $text  = "New Subscription Request\n\n";
-    $text .= "Name:   {$name}\n";
-    $text .= "Mobile: {$mobile}\n";
-    $text .= "Email:  {$email}\n";
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    http_response_code(405);
+    exit('Method not allowed');
+}
 
-    // Simple HTML version
-    $html = '<!doctype html>
+// ----- Collect & sanitise -----
+$email  = isset($_POST['wdt_mc_emailid']) ? filter_var($_POST['wdt_mc_emailid'], FILTER_SANITIZE_EMAIL) : '';
+$name   = isset($_POST['wdt_mc_name'])    ? substr(preg_replace("/[\r\n]+/", ' ', strip_tags($_POST['wdt_mc_name'])), 0, 120) : '';
+$mobile = isset($_POST['wdt_mc_mobile'])  ? substr(preg_replace('/\D+/', '', $_POST['wdt_mc_mobile']), 0, 20) : '';
+
+// Validate email
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    exit("Invalid email address.");
+}
+
+// ----- Subject & Bodies -----
+$subject = "New Subscription Request";
+
+$e = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
+
+// Plain text
+$text  = "New Subscription Request\n\n";
+$text .= "Name:   {$name}\n";
+$text .= "Mobile: {$mobile}\n";
+$text .= "Email:  {$email}\n";
+
+// HTML
+$html = '<!doctype html>
 <html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>New Subscription Request</title></head>
+<head><meta charset="UTF-8"><title>New Subscription Request</title></head>
 <body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;">
   <div style="width:100%;max-width:500px;margin:0 auto;border-top:5px solid #9D7458;padding:20px;">
     <h2 style="margin:0 0 16px 0;font-size:22px;line-height:1.3;text-align:center;">New Subscription Request</h2>
-    <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Name:</strong> '.htmlspecialchars($name, ENT_QUOTES, 'UTF-8').'</p>
-    <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Mobile:</strong> '.htmlspecialchars($mobile, ENT_QUOTES, 'UTF-8').'</p>
-    <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Email:</strong> '.htmlspecialchars($email, ENT_QUOTES, 'UTF-8').'</p>
+    <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Name:</strong> '.$e($name).'</p>
+    <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Mobile:</strong> '.$e($mobile).'</p>
+    <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Email:</strong> '.$e($email).'</p>
+    <p style="margin:16px 0 0 0;font-size:12px;color:#777;">Mode: <strong>'.strtoupper(MODE).'</strong></p>
   </div>
 </body>
 </html>';
 
-    // Headers
-    $headers  = "From: {$from_name} <{$from_email}>\r\n";                 // your domain sender
-    $headers .= "Reply-To: ".sprintf('"%s" <%s>', $name ?: 'Subscriber', $email)."\r\n";
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Date: {$date_hdr}\r\n";
-    $headers .= "Message-ID: {$message_id}\r\n";
-    $headers .= "X-Mailer: PHP/".phpversion()."\r\n";
-    $headers .= "Content-Type: multipart/alternative; boundary=\"{$boundary}\"\r\n";
+try {
+    $mail = new PHPMailer(true);
+    // $mail->SMTPDebug = 2; // uncomment to debug
 
-    // Add CC recipients
-    $headers .= "Cc: " . implode(", ", $cc_recipients) . "\r\n";  // Add CC to headers
+    // ---- SMTP (Gmail) ----
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    // === Replace with your Gmail + App Password (keep secret) ===
+    $mail->Username   = 'digital@hbsoftweb.com';   // Gmail address
+    $mail->Password   = 'kunrcsphngzituka';             // Gmail App Password
+    // ============================================================
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
-    // Body
-    $body  = "--{$boundary}\r\n";
-    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-    $body .= $text."\r\n";
-    $body .= "--{$boundary}\r\n";
-    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-    $body .= $html."\r\n";
-    $body .= "--{$boundary}--\r\n";
+    // ---- Headers / recipients ----
+    // With Gmail SMTP, setFrom should match the authenticated Gmail
+    $mail->setFrom('digital@hbsoftweb.com', 'Website Subscriptions');
 
-    // Envelope sender for SPF alignment
-    $params = "-f {$bounce}";
-
-    // Send email
-    if (mail($to, $subject, $body, $headers, $params)) {
-        header("Location: thank-you.html");
-        exit;
-    } else {
-        http_response_code(500);
-        echo "There was an error sending your subscription request. Please try again.";
+    // Add TO recipients for current MODE
+    if (!empty($RECIPIENTS[MODE]['to'])) {
+        foreach ($RECIPIENTS[MODE]['to'] as $to) {
+            if (filter_var($to, FILTER_VALIDATE_EMAIL)) {
+                $mail->addAddress($to);
+            }
+        }
     }
+
+    // Add CC recipients for current MODE
+    if (!empty($RECIPIENTS[MODE]['cc'])) {
+        foreach ($RECIPIENTS[MODE]['cc'] as $cc) {
+            if (filter_var($cc, FILTER_VALIDATE_EMAIL)) {
+                $mail->addCC($cc);
+            }
+        }
+    }
+
+    // Let replies go to the submitter
+    $mail->addReplyTo($email, ($name !== '' ? $name : 'Subscriber'));
+
+    // ---- Content ----
+    $mail->CharSet = 'UTF-8';
+    $mail->isHTML(true);
+    $mail->Subject = $subject;
+    $mail->Body    = $html;
+    $mail->AltBody = $text;
+
+    // Send
+    $mail->send();
+
+    // Redirect on success (no output before this!)
+    header("Location: thank-you.html");
+    exit;
+
+} catch (Exception $ex) {
+    http_response_code(500);
+    echo "There was an error sending your subscription request. Please try again.";
+    // For debugging on server logs:
+    error_log('PHPMailer error: ' . $ex->getMessage());
+    exit;
 }
-?>
