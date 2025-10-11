@@ -1,0 +1,76 @@
+/*--------------------------------------------------------------
+    404 Error / Not-found Page
+--------------------------------------------------------------*/
+
+	.error404, .error404 > .wrapper { width: 100%; height: 100vh; }
+	.error404 > .wrapper { display: flex; padding: 50px 0 50px; }
+
+	.center-content-wrapper {
+		width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+	.center-content-wrapper > img { width: clamp(17.5rem, 6.6967rem + 36.0861vw, 50rem);/*800-280*/}	
+
+	.error404 h1, .error404 h2, .error404 h3, .error404 h4, .error404 h5, .error404 h6 { line-height: 1em; }
+	.error404 h2 { font-family: var(--wdtFontTypo_Alt); font-size: var(--wdtFontSize_H2); font-weight: var(--wdtFontWeight_Base); 
+		line-height: 0.85; letter-spacing: 0; text-transform: capitalize; margin: clamp(2.5rem, 2.0845rem + 1.3879vw, 3.75rem) 0 clamp(1.875rem, 1.6672rem + 0.694vw, 2.5rem); }
+	.error404 h3 { position: relative; display: inline-block; font-size: 220px; font-weight: bold; line-height: 0.85; 
+		top: 0; margin: 0; margin-bottom: clamp(1.875rem, 1.7082rem + 0.9202vw, 2.8125rem); /*40px - 25px*/ }
+	.error404 .type1 h4 { width: 100%; max-width: 570px; font-size: clamp(1.125rem, 1.0419rem + 0.2776vw, 1.375rem); font-weight: var(--wdtFontWeight_Base); line-height: var(--wdtLineHeight_H2); text-transform: capitalize; padding-bottom: 24px; margin: 0 auto; }
+
+	.error404 .wdt-button, .error404 .wdt-button.type1 { display: inline-block; padding: var(--wdtPadding_Btn); letter-spacing: 0; }
+	.error404 .type1 #wdt-style-picker ul li::before, .error404 #wdt-style-picker ul li:before { content: none; }
+	.error404 .type1 #wdt-style-picker h3, .error404 #wdt-style-picker h3 { letter-spacing: 0; text-transform: capitalize; }
+	.error404 #wdt-style-picker h2 { top: 0; }
+
+	.error-box-inner * { text-align: center; }
+
+	.error404 .menu-links { margin: 40px 0; }
+	.error404 .menu-links li { 
+		display: inline-block; text-transform: uppercase; font-size: 16px; padding: 0; margin: 0 2px 5px; }
+	.error404 .menu-links li a { padding: 7px 20px; display: inline-block; }
+
+	.error404 #searchform .wdt-search-icon { display: none; }
+	.error404 #searchform { display: inline-block; margin: 0 auto; position: relative; width: 60%; }
+	.error404 #searchform input[type="text"], .error404 #searchform input[type="submit"] { height: 52px; }
+    .error404 #searchform input[type="submit"] { 
+		border-radius: var(--wdtRadius_Zero); padding: 13px 20px 13px; position: absolute; right: 0; top: 0; margin-top: 0; }
+
+    .error404 .container { height: 100%; text-align: center; }
+
+
+
+/*--------------------------------------------------------------
+    Default Colors
+--------------------------------------------------------------*/
+
+	/* .error404 .wdt-dark-bg, .error404 .menu-links li:hover a { background: var(--wdtHeadAltColor); } */
+	.error404 .menu-links li a { background:rgba(var(--wdtHeadAltColorRgb),0.05); }
+
+	.error404 .wdt-button, .error404 .wdt-button.type1, .error404 .menu-links li:hover a { color: var(--wdtAccentTxtColor); }
+
+	.error404 .wdt-button { background-color: var(--wdtPrimaryColor); }
+	.error404 .wdt-button:hover { background-color: var(--wdtSecondaryColor); }
+
+	.error404 .menu-links li a { color: var(--wdtHeadAltColor); }
+
+
+
+/*--------------------------------------------------------------
+    Accents
+--------------------------------------------------------------*/
+
+	.error404 h3 { color: var(--wdtPrimaryColor); }
+
+
+
+/*--------------------------------------------------------------
+ Responsive
+--------------------------------------------------------------*/
+
+/* Common Styles for the devices below 479px width */
+@media only screen and (max-width: 479px) {
+
+	.error404 h2 { font-size: var(--wdtFontSize_H1); }
+	.error404 h3 { font-size: var(--wdtFontSize_H2); }
+	.error404 h4 { font-size: var(--wdtFontSize_H3); }
+
+}

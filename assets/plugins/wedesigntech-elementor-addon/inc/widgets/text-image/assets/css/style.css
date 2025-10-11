@@ -1,0 +1,82 @@
+
+.wdt-elementor-repeater-container-wrapper { margin: 0px; }
+.wdt-elementor-repeater-container-wrapper > div { line-height: 1em; display: inline; vertical-align: middle; }
+
+.wdt-elementor-repeater-container-wrapper > .wdt-opt-image img { object-fit: cover; border-radius: 0em; }
+
+.wdt-elementor-repeater-container-wrapper > .wdt-opt-icon { display: inline-flex; align-items: center; justify-content: center; }
+.wdt-elementor-repeater-container-wrapper > .wdt-opt-icon svg { width: 1em; height: 1em; fill: currentColor; }
+
+.wdt-elementor-repeater-container-wrapper .wdt-text-tile{font-family:var(--wdtFontTypo_Alt); font-size: clamp(2.100rem, 1.707rem + 1.9108vw, 20px);
+ /* Min-35 & Max-64 */
+font-weight:var(--wdtFontWeight_Alt); line-height:55px; color:var(--wdtLinkColor);}
+ 
+/* General Container Layout */
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 equal-width columns */
+  gap: 10px; /* Spacing between boxes */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Box Styling */
+.box { /* Gradient background color */
+    background-image: url('https://physeo.wpengine.com/wp-content/uploads/2025/06/Home-1-exray-bg.png');
+    background-size: cover;
+  background: #868D7B;
+  color: white; /* Text color */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+h3.service-head {
+    color: #fff;
+}
+/* Hover effect */
+.box:hover {
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Icons (Optional) */
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr); /* 4 boxes in a row for medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr); /* 3 boxes in a row for smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr); /* 2 boxes in a row for mobile */
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    grid-template-columns: 1fr; /* 1 box per row for very small screens */
+  }
+}
+
+.wdt-elementor-repeater-container-wrapper .wdt-opt-image{
+    margin:0 20px;
+}
+@media(max-width:767px){
+    .wdt-elementor-repeater-container-wrapper .wdt-text-tile{
+        line-height: var(--wdtLineHeight_Base);
+    }
+}

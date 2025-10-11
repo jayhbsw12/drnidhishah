@@ -1,0 +1,7 @@
+# Ensure mod_rewrite is enabled
+RewriteEngine On
+
+# Redirect to the custom 404 error page
+ErrorDocument 404 /404.html
+
+# Other settings can go here
