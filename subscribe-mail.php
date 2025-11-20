@@ -31,11 +31,11 @@ $RECIPIENTS = [
   ],
   'prod' => [
     'to' => [
-      'nidhishah0002@gmail.com',         // client email(s)
+      'jaymodihbsoftweb@gmail.com',         // client email(s)
       // 'another@client.com',
     ],
     'cc' => [
-      'info@hbsoftweb.com',              // optional
+      '',              // optional
     ],
   ],
 ];
@@ -50,9 +50,18 @@ $email = isset($_POST['wdt_mc_emailid']) ? filter_var($_POST['wdt_mc_emailid'], 
 $name = isset($_POST['wdt_mc_name']) ? substr(preg_replace("/[\r\n]+/", ' ', strip_tags($_POST['wdt_mc_name'])), 0, 120) : '';
 $mobile = isset($_POST['wdt_mc_mobile']) ? substr(preg_replace('/\D+/', '', $_POST['wdt_mc_mobile']), 0, 20) : '';
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  http_response_code(400);
-  exit("Invalid email address.");
+// Identify which form submitted: 'popup' or 'footer' (default to empty)
+$form_source = isset($_POST['form_source']) ? trim((string)$_POST['form_source']) : '';
+
+// Validate email only for non-popup forms (footer or others).
+if ($form_source !== 'popup') {
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    http_response_code(400);
+    exit("Invalid email address.");
+  }
+} else {
+  // For popup submissions we allow empty/invalid email; ensure it's a string
+  $email = $email ?: '';
 }
 
 // ----- Subject & Bodies -----

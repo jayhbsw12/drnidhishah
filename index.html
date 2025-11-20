@@ -6072,6 +6072,9 @@
                           placeholder="Your Email Address"
                         />
 
+                        <!-- Indicate this is the footer form -->
+                        <input type="hidden" name="form_source" value="footer" />
+
                         <!-- Existing hidden fields -->
                         <input type="hidden" name="wdt_mc_apikey" value="" />
                         <input type="hidden" name="wdt_mc_listid" value="" />
@@ -6388,13 +6391,8 @@
                           autocomplete="tel"
                         />
 
-                        <!-- Existing Email -->
-                        <input
-                          type="email"
-                          name="wdt_mc_emailid"
-                          required="required"
-                          placeholder="Your Email Address"
-                        />
+                        <!-- Popup form: email removed as requested -->
+                        <input type="hidden" name="form_source" value="popup" />
 
                         <!-- Existing hidden fields -->
                         <input type="hidden" name="wdt_mc_apikey" value="" />
