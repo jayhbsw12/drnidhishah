@@ -35,7 +35,7 @@ $RECIPIENTS = [
         ],
         'cc' => [
             // 'info@hbsoftweb.com',           // Optional CC
-            'digital@hbsoftweb.com',     
+            'info@hbsoftweb.com',     
         ],
     ],
 ];
