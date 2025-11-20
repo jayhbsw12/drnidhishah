@@ -5,9 +5,18 @@
     display: flex;
     gap: 5px;
 }
-.social-icons-live:hover{
+/* .social-icons-live:hover{
     background: transparent;
-}
+} */
 a.wdt-button.social-icons-live {
     background: none !important;
+}
+a.wdt-button.social-icons-live {
+    padding: 6px 0px !important;
+}
+span.wdt-button-icon.social-sub-icons {
+    margin-left: 0px !important;
+}
+.wdt-button-holder {
+    gap: 10px;
 }
