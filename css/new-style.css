@@ -8,3 +8,6 @@
 .social-icons-live:hover{
     background: transparent;
 }
+a.wdt-button.social-icons-live {
+    background: none !important;
+}
