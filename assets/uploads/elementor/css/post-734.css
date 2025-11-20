@@ -28,7 +28,7 @@
 .elementor-734 .elementor-element.elementor-element-05503d5>.e-con-inner>.elementor-background-slideshow::before,
 .elementor-734 .elementor-element.elementor-element-05503d5>.elementor-motion-effects-container>.elementor-motion-effects-layer::before {
 	/* background-color    : var(--e-global-color-primary); */
-	background-color: #1c1c1c85;
+	background-color: #1c1c1c85 !important;
 	--background-overlay: '';
 }
 
