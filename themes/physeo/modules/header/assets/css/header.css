@@ -2,7 +2,8 @@
     Header
 --------------------------------------------------------------*/
 
-    #header-wrapper { float: left; margin: 0 0 120px; padding: 0; position: relative; width: 100%; }
+    /* Make header-wrapper sticky so header stays visible on scroll */
+    #header-wrapper { float: left; margin: 0 0 120px; padding: 0; position: -webkit-sticky; position: sticky; top: 0; width: 100%; z-index: 9999; }
 
     #header { float: left; margin: 0; padding: 0; position: relative; width: 100%; z-index: 10; }
 

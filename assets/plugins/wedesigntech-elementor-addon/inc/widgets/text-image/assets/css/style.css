@@ -28,7 +28,7 @@ font-weight:var(--wdtFontWeight_Alt); line-height:55px; color:var(--wdtLinkColor
   color: white; /* Text color */
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center vertically */
+  justify-content: flex-start; /* Center vertically */
   align-items: center; /* Center horizontally */
   padding: 20px;
   text-align: center;

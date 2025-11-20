@@ -1,0 +1,10 @@
+.social-icons-live {
+  border: none !important;
+}
+.social-sub-icons {
+    display: flex;
+    gap: 5px;
+}
+.social-icons-live:hover{
+    background: transparent;
+}
