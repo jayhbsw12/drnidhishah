@@ -15,7 +15,7 @@
     color: #fff;
 }
 .wdt-popup-box-holder.mfp-wrap .mfp-container.mfp-inline-holder .mfp-content .wdt-popup-box-content-holder .wdt-popup-box-content-inner {
-    max-height: calc(95vh - 2*1.5em); 
+    max-height: calc(94vh - 2*1.5em); 
     overflow-y: auto; border-radius: inherit; -webkit-border-radius: inherit; cursor: auto;
 }
 .subscription-form {
