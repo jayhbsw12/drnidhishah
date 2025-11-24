@@ -114,3 +114,17 @@
     }
 }
 
+/* Prevent background scrolling when popup is open (fallback & mobile) */
+html.mfp-open, body.mfp-open {
+    overflow: hidden !important;
+    height: 100% !important;
+    -webkit-overflow-scrolling: auto !important;
+    touch-action: none;
+}
+
+/* ensure popup inner remains scrollable while background is locked */
+.wdt-popup-box-holder.mfp-wrap .mfp-container.mfp-inline-holder .mfp-content .wdt-popup-box-content-holder .wdt-popup-box-content-inner {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+}
+

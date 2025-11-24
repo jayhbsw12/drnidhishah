@@ -5,6 +5,7 @@
     };
     const wdtPopupBoxGlobalHandlerInit = function($scope) {
         const $self = this;
+        let _wdt_scrollTop = 0;
         let settings = $scope.data('settings');
         if (typeof settings === 'string') {
             try {
@@ -73,7 +74,27 @@
                 enableEscapeKey: $esc_to_exit,
                 closeOnBgClick: $click_to_exit,
                 mainClass: $popup_class,
-                closeBtnInside: $mfp_button_position
+                closeBtnInside: $mfp_button_position,
+                callbacks: {
+                    open: function() {
+                        try {
+                            _wdt_scrollTop = $(window).scrollTop() || 0;
+                            $('body').css({
+                                position: 'fixed',
+                                top: -_wdt_scrollTop + 'px',
+                                left: '0',
+                                right: '0',
+                                width: '100%'
+                            });
+                        } catch (e) {}
+                    },
+                    close: function() {
+                        try {
+                            $('body').css({ position: '', top: '', left: '', right: '', width: '' });
+                            $(window).scrollTop(_wdt_scrollTop);
+                        } catch (e) {}
+                    }
+                }
             });
         };
     };
