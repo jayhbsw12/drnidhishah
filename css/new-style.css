@@ -305,3 +305,10 @@ span.wdt-button-icon.social-sub-icons {
 .review-wrapper::-webkit-scrollbar {
     display: none;
 }
+
+.google-badge {
+    border-radius: 10px !important;
+    background-color: white;
+    padding: 10px;
+    margin-top: 10px;
+}
