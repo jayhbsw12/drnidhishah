@@ -28,3 +28,280 @@ span.wdt-button-icon.social-sub-icons {
 .subscribe-here {
     width: 100%;
 }
+
+/* reviews ---------------------------------------- */
+
+.review-frame {
+  margin-top: 20px;
+  flex-wrap: wrap;
+  min-width: 1440px;
+  align-items: flex-start;
+  gap: 10px 10px;
+  display: flex;
+  position: relative;
+}
+
+.review-frame .review-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 342px;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+  background-color: #f3f3f3;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: #e4e4e4;
+}
+
+.review-frame .div {
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  position: relative;
+}
+
+.review-frame .review-avatar-image {
+  position: relative;
+  align-self: stretch;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.review-frame .review-title-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+}
+
+.review-frame .reviewer-name {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  /* font-family: "Poppins"; */
+  font-weight: 600;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.review-frame .review-duration {
+  width: fit-content;
+  /* font-family: "Poppins-Regular", Helvetica; */
+  font-weight: 400;
+  color: #808080;
+  position: relative;
+  /* font-size: 14px; */
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.review-frame .review-google-icon {
+  position: relative;
+  width: 25.87px;
+  height: 26.44px;
+  aspect-ratio: 0.98;
+  object-fit: cover;
+}
+
+.review-frame .frame {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.review-frame .review-text {
+  flex: 1;
+  margin-top: -1.00px;
+  /* font-family: "Poppins-Regular", Helvetica; */
+  font-weight: 400;
+  color: #737373;
+  position: relative;
+  /* font-size: 14px; */
+  letter-spacing: 0;
+  line-height: normal;
+}
+.review-frame .review-action {
+  width: fit-content;
+  margin-top: -1.00px;
+  /* font-family: "Poppins-Medium", Helvetica; */
+  font-weight: 500;
+  color: #4e4e4e;
+  position: relative;
+  /* font-size: 14px; */
+  letter-spacing: 0;
+  line-height: normal;
+}
+/* Inject original CSS code here */
+.review-frame {
+  flex-wrap: wrap;
+  min-width: 1440px;
+  align-items: flex-start;
+  gap: 10px 10px;
+  display: flex;
+  position: relative;
+  align-items: stretch;
+}
+.review-frame .review-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 342px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 20px;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+  background-color: #f3f3f3;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid;
+  border-color: #e4e4e4;
+}
+.review-frame .review-header {
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  position: relative;
+}
+.review-frame .review-avatar-image {
+  position: relative;
+  align-self: stretch;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.review-frame .review-title-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  flex: 1;
+  flex-grow: 1;
+}
+.review-frame .reviewer-name {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  /* font-family: "Poppins-SemiBold", Helvetica; */
+  font-weight: 600;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.review-frame .review-duration {
+  width: fit-content;
+  /* font-family: "Poppins-Regular", Helvetica; */
+  font-weight: 400;
+  color: #808080;
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.review-frame .review-google-icon {
+  position: relative;
+  width: 25.87px;
+  height: 26.44px;
+  aspect-ratio: 0.98;
+  object-fit: cover;
+}
+.review-frame .review-rating {
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  position: relative;
+}
+.review-frame .frame {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+.review-frame .review-content {
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  position: relative;
+}
+.review-frame .review-text {
+  flex: 1;
+  margin-top: -1.00px;
+  /* font-family: "Poppins-Regular", Helvetica; */
+  font-weight: 400;
+  color: #737373;
+  position: relative;
+  /* font-size: 14px; */
+  letter-spacing: 0;
+  line-height: normal;
+}
+.review-frame .review-footer {
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  position: relative;
+}
+.review-frame .review-action {
+  width: fit-content;
+  margin-top: -1.00px;
+  /* font-family: "Poppins-Medium", Helvetica; */
+  font-weight: 500;
+  color: #4e4e4e;
+  position: relative;
+  /* font-size: 14px; */
+  letter-spacing: 0;
+  line-height: normal;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  padding: 5px 10px;
+}
+.review-frame .review-action:hover {
+  text-decoration: underline;
+}
+.review-frame .review-action:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+.review-title-meta .reviewer-name {
+    margin-bottom: 4px;
+}
+.review-wrapper {
+    overflow-x: auto;
+}
+@media(max-width:1200px){
+  .review-wrapper{
+    cursor: grab;
+  }
+}
+.review-wrapper::-webkit-scrollbar {
+    display: none;
+}
