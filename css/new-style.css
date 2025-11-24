@@ -20,3 +20,11 @@ span.wdt-button-icon.social-sub-icons {
 .wdt-button-holder {
     gap: 10px;
 }
+
+.text-number-call{
+    font-size: 18px;
+}
+
+.subscribe-here {
+    width: 100%;
+}
