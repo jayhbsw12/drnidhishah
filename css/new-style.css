@@ -312,3 +312,46 @@ span.wdt-button-icon.social-sub-icons {
     padding: 10px;
     margin-top: 10px;
 }
+
+/* ------------------------------------ */
+.topbar-new-top {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #9d7458;
+    color: white;
+    padding: 0px 40px;
+}
+
+a.link-topbar {
+    color: white;
+}
+
+.topbar-holder-left {
+    display: flex;
+    gap: 10px;
+}
+
+.selection .select2-selection__rendered {
+    color: #bfac9f;
+    padding: 15px 20px;
+}
+
+span.select2.select2-container.select2-container--default {
+    color: #c6b5a9;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #c6b5a9;
+    line-height: 22px;
+    padding: 15px 20px;
+}
+.footer-subscribe-buttons-holder{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}

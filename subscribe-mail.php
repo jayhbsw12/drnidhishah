@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $email = isset($_POST['wdt_mc_emailid']) ? filter_var($_POST['wdt_mc_emailid'], FILTER_SANITIZE_EMAIL) : '';
 $name = isset($_POST['wdt_mc_name']) ? substr(preg_replace("/[\r\n]+/", ' ', strip_tags($_POST['wdt_mc_name'])), 0, 120) : '';
 $mobile = isset($_POST['wdt_mc_mobile']) ? substr(preg_replace('/\D+/', '', $_POST['wdt_mc_mobile']), 0, 20) : '';
+$location = isset($_POST['location']) ? substr(preg_replace("/[\r\n]+/", ' ', strip_tags($_POST['location'])), 0, 120) : '';
 
 // Identify which form submitted: 'popup' or 'footer' (default to empty)
 $form_source = isset($_POST['form_source']) ? trim((string)$_POST['form_source']) : '';
@@ -76,6 +77,7 @@ $text = $baseSubject . "\n\n";
 $text .= "Name:   {$name}\n";
 $text .= "Mobile: {$mobile}\n";
 $text .= "Email:  {$email}\n";
+$text .= "Location: {$location}\n";
 
 // HTML
 $html = '<!doctype html>
@@ -87,6 +89,7 @@ $html = '<!doctype html>
     <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Name:</strong> ' . $e($name) . '</p>
     <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Mobile:</strong> ' . $e($mobile) . '</p>
     <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Email:</strong> ' . $e($email) . '</p>
+    <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Location:</strong> ' . $e($location) . '</p>
   </div>
 </body>
 </html>';

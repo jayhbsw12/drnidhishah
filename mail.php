@@ -34,7 +34,7 @@ $RECIPIENTS = [
             // 'jaymodihbsoftweb@gmail.com',
         ],
         'cc' => [
-            // 'info@hbsoftweb.com',           // Optional CC
+            // 'digital@hbsoftweb.com',           // Optional CC
             'info@hbsoftweb.com',     
         ],
     ],
@@ -51,12 +51,14 @@ $email = isset($_POST['cli_email']) ? trim($_POST['cli_email']) : '';
 $mobile = isset($_POST['cli_mobile']) ? trim($_POST['cli_mobile']) : '';
 $service = isset($_POST['services']) ? trim($_POST['services']) : '';
 $date = isset($_POST['date']) ? trim($_POST['date']) : '';
+$location = isset($_POST['location']) ? trim($_POST['location']) : '';
 
 $name = substr(preg_replace("/[\r\n]+/", ' ', strip_tags($name)), 0, 120);
 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 $mobile = substr(preg_replace('/\D+/', '', $mobile), 0, 20);
 $service = substr(preg_replace("/[\r\n]+/", ' ', strip_tags($service)), 0, 120);
 $date = substr(preg_replace("/[\r\n]+/", ' ', strip_tags($date)), 0, 60);
+$location = substr(preg_replace("/[\r\n]+/", ' ', strip_tags($location)), 0, 120);
 
 // Validate minimums
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -78,6 +80,7 @@ $text .= "Email:  {$email}\n";
 $text .= "Mobile: {$mobile}\n";
 $text .= "Service Requested: {$service}\n";
 $text .= "Preferred Date:    {$date}\n";
+$text .= "Location: {$location}\n";
 
 // HTML
 $html = '<!doctype html>
@@ -91,6 +94,7 @@ $html = '<!doctype html>
     <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Mobile:</strong> ' . $e($mobile) . '</p>
     <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Service Requested:</strong> ' . $e($service) . '</p>
     <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Preferred Date:</strong> ' . $e($date) . '</p>
+    <p style="margin:0 0 8px 0;font-size:16px;line-height:1.6;"><strong>Location:</strong> ' . $e($location) . '</p>
   </div>
 </body>
 </html>';
