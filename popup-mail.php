@@ -31,12 +31,12 @@ $RECIPIENTS = [
   ],
   'prod' => [
       'to' => [
-          // 'nidhishah0002@gmail.com',      
-          'jaymodihbsoftweb@gmail.com',
+          'nidhishah0002@gmail.com',      
+          // 'jaymodihbsoftweb@gmail.com',
       ],
       'cc' => [
-          // 'info@hbsoftweb.com',     
-          'digital@hbsoftweb.com',           
+          'info@hbsoftweb.com',     
+          // 'digital@hbsoftweb.com',           
       ],
     ],
 ];
